@@ -1,0 +1,138 @@
+c:\Users\vivek\OneDrive\Desktop\Ayush\AcadConnect\
+├── .env                                # Local environment configuration (VITE_USE_MOCKS=true)
+├── .env.example                        # Template environment configuration
+├── index.html                          # Entry HTML with Inter font & viewport meta
+├── package.json                        # Dependencies, scripts, and build configuration
+├── postcss.config.js                   # PostCSS configuration for Tailwind
+├── tailwind.config.js                  # Tailwind design system tokens (indigo, page background, etc.)
+├── tsconfig.json                       # TypeScript compiler options & path aliases
+├── vite.config.ts                      # Vite build configuration with @/ alias
+├── README.md                           # Documentation, quickstart guide, & criteria mapping
+└── src/
+    ├── App.tsx                         # Root app with TanStack Query, AuthProvider, Toaster
+    ├── index.css                       # Design tokens, scrollbar styling, reduced-motion overrides
+    ├── main.tsx                        # React 18 DOM mount
+    ├── vite-env.d.ts                   # Environment type declarations
+    ├── types/
+    │   └── index.ts                    # Full TypeScript domain models (User, Group, Subgroup, Project, etc.)
+    ├── utils/
+    │   ├── constants.ts                # Design tokens, status colors, file limits, demo accounts
+    │   ├── formatters.ts               # Date/time formatters, progress calculator, file size formatters
+    │   └── validators.ts               # Zod validation schemas for forms
+    ├── services/
+    │   ├── endpoints.ts                # Centralized REST API endpoints contract
+    │   ├── api.ts                      # Shared Axios client instance with error interceptors
+    │   ├── authService.ts              # Authentication & session refresh
+    │   ├── groupService.ts             # Main group & subgroup operations
+    │   ├── projectService.ts           # Project requirements & milestone queries
+    │   ├── submissionService.ts        # Deliverable uploads, draft saving, updates
+    │   ├── reviewService.ts            # Faculty evaluations & reminders
+    │   ├── reportService.ts            # Blob Excel exports (.xlsx)
+    │   ├── announcementService.ts      # Group broadcast announcements
+    │   ├── resourceService.ts          # Course templates & reference links
+    │   ├── assignmentService.ts        # Deliverable deadlines & lock management
+    │   ├── notificationService.ts      # User notifications & read markers
+    │   └── userService.ts              # Admin user provisioning & directories
+    ├── mocks/
+    │   ├── mockData.ts                 # Pre-seeded users (1 admin, 2 teachers, 12 students), groups, projects
+    │   └── mockAdapter.ts              # In-memory Axios adapter simulating Spring Boot REST APIs & auth rules
+    ├── context/
+    │   └── AuthContext.tsx             # Auth state, in-memory tokens, cache eviction on logout
+    ├── routes/
+    │   ├── AppRoutes.tsx               # Master route tree with role guards
+    │   ├── ProtectedRoute.tsx          # Authentication guard (redirects to /login preserving target)
+    │   └── RoleRoute.tsx               # Role guard (redirects unauthorized roles to /unauthorized)
+    ├── components/
+    │   ├── common/
+    │   │   ├── Badge.tsx               # Text-labelled badges (never color alone)
+    │   │   ├── Button.tsx              # Button with primary, secondary, outline, danger variants & focus rings
+    │   │   ├── ConfirmDialog.tsx       # Destructive/irreversible action confirmation modal
+    │   │   ├── DataTable.tsx           # Searchable, sortable, paginated data table
+    │   │   ├── EmptyState.tsx          # Informative empty states with actionable buttons
+    │   │   ├── FileUpload.tsx          # Drag-and-drop file upload with progress bar, retry, and removal
+    │   │   ├── Input.tsx               # Form input with aria-describedby accessibility
+    │   │   ├── Loader.tsx              # Layout-preserving skeleton loaders & spinners
+    │   │   ├── Modal.tsx               # Accessible dialog with focus trap & ESC handling
+    │   │   ├── PageHeader.tsx          # Consistent header with breadcrumbs and action slots
+    │   │   ├── Select.tsx              # Form select dropdown
+    │   │   ├── StatCard.tsx            # KPI metric card with trends and icons
+    │   │   └── StatusPill.tsx          # Visual status pill mapped to colors + visible text labels
+    │   ├── layout/
+    │   │   ├── DashboardLayout.tsx     # Single responsive shell combining Sidebar + Topbar + Content
+    │   │   ├── MobileNavigation.tsx    # Mobile slide-out drawer
+    │   │   ├── Sidebar.tsx             # Role-aware navigation links for Student, Teacher, and Admin
+    │   │   └── Topbar.tsx              # Header with contextual search, bell alerts, profile, & demo switcher
+    │   ├── dashboard/
+    │   │   ├── WelcomeHeader.tsx       # Welcome greeting with action banner
+    │   │   ├── QuickStats.tsx          # Student KPI cards
+    │   │   ├── QuickActions.tsx        # Immediate 1-click student actions
+    │   │   ├── ActiveProjectCard.tsx   # Active project card with milestone progress bar
+    │   │   ├── ProgressBar.tsx         # Milestone-derived percentage bar
+    │   │   ├── UpcomingDeadline.tsx    # Next upcoming due dates
+    │   │   ├── RecentActivity.tsx      # Submission updates & review events
+    │   │   └── TeamMembers.tsx         # Subgroup peers and assigned faculty guide
+    │   ├── group/
+    │   │   ├── GroupCard.tsx           # Main academic group card
+    │   │   ├── SubgroupCard.tsx        # Project subgroup card (enforces 3 member capacity)
+    │   │   ├── MemberList.tsx          # Roster of team members with roll numbers
+    │   │   ├── CreateGroupModal.tsx    # Faculty group creation modal
+    │   │   └── InviteLinkBox.tsx       # 1-click copyable student invite link
+    │   ├── project/
+    │   │   ├── ProjectCard.tsx         # Project card with milestone progress
+    │   │   └── MilestoneList.tsx       # Ordered milestone roadmap with status markers
+    │   ├── submission/
+    │   │   ├── SubmissionHeader.tsx    # Project, group, deadline context & lock banner
+    │   │   ├── GithubInput.tsx         # GitHub URL validator with external link launcher
+    │   │   └── SubmissionChecklist.tsx # Real-time checklist for required submission items
+    │   ├── review/
+    │   │   ├── ReviewForm.tsx          # Teacher grading form (remarks required on revision/reject)
+    │   │   └── ReviewHistory.tsx       # Historical timeline of teacher reviews
+    │   └── communication/
+    │       ├── AnnouncementCard.tsx    # Class broadcast notice card
+    │       ├── AssignmentCard.tsx      # Assignment deliverable card with lock state & export
+    │       ├── MessageBox.tsx          # Direct private chat between teacher and a subgroup
+    │       └── ResourceCard.tsx        # Course material / link card with type icons
+    └── pages/
+        ├── auth/
+        │   ├── LoginPage.tsx           # Sign-in page with demo accounts quick-fill
+        │   ├── RegisterPage.tsx        # Public STUDENT-only registration with roll numbers
+        │   ├── ForgotPasswordPage.tsx  # Password reset request
+        │   └── InviteJoinPage.tsx      # Public preview (/join/:code) & one-click join
+        ├── student/
+        │   ├── StudentDashboard.tsx    # Student hub answering the 4 core questions at a glance
+        │   ├── StudentGroupPage.tsx    # Main group view & subgroup creator (max 3 members)
+        │   ├── StudentProjectPage.tsx  # Project requirements, scope, and milestone timeline
+        │   ├── StudentSubmissionPage.tsx # GitHub URL, project zip, synopsis, draft saving, & lock checks
+        │   ├── StudentFeedbackPage.tsx # Faculty remarks & revision details
+        │   ├── StudentAnnouncementsPage.tsx # Class broadcast feed (read-only for students)
+        │   ├── StudentResourcesPage.tsx # Shared course documents and templates
+        │   └── StudentAssignmentsPage.tsx   # Group assignment deadlines
+        ├── teacher/
+        │   ├── TeacherDashboard.tsx    # Submission stats (Submitted/Pending/Late) & quick actions
+        │   ├── TeacherGroupsPage.tsx   # Manage course divisions & view all student subgroups
+        │   ├── TeacherProjectsPage.tsx # Supervised project tracks
+        │   ├── TeacherSubmissionsPage.tsx # Submissions table with URL search param filters & export
+        │   ├── TeacherSubmissionDetailPage.tsx # Dossier review, artifact download, feedback, & reminders
+        │   ├── TeacherEvaluationsPage.tsx # Grading overview
+        │   ├── TeacherReportsPage.tsx  # Excel export panel (Group, Subgroup, Filtered, & Schema spec)
+        │   ├── TeacherAnnouncementsPage.tsx # Post notice with institutional email dispatch
+        │   ├── TeacherResourcesPage.tsx # Upload/share templates and rubrics
+        │   ├── TeacherAssignmentsPage.tsx # Create assignments, future deadline checks, lock/unlock
+        │   └── TeacherStudentsPage.tsx # Student roster across supervised sections
+        ├── admin/
+        │   ├── AdminDashboard.tsx      # Global statistics, department quotas, and Recharts bar chart
+        │   ├── AdminUsersPage.tsx      # Provision privileged Teacher and Administrator accounts
+        │   ├── AdminTeachersPage.tsx   # Faculty directory
+        │   ├── AdminStudentsPage.tsx   # Enrolled student roster
+        │   ├── AdminDepartmentsPage.tsx # Departmental capacity overview
+        │   ├── AdminGroupsPage.tsx     # System-wide groups audit
+        │   ├── AdminProjectsPage.tsx   # System-wide projects ledger
+        │   ├── AdminSubmissionsPage.tsx# System-wide submissions
+        │   ├── AdminReportsPage.tsx    # Institution master Excel export
+        │   └── AdminSettingsPage.tsx   # System parameters and constraints
+        └── shared/
+            ├── ProfilePage.tsx         # Account profile & academic year details
+            ├── SettingsPage.tsx        # Notification preferences & accessibility
+            ├── NotificationsPage.tsx   # Alert notifications ledger
+            ├── UnauthorizedPage.tsx    # 403 Access Denied screen
+            └── NotFoundPage.tsx        # 404 Page Not Found screen

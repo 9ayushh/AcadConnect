@@ -1,0 +1,47 @@
+package com.AcadConnect.Proj.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "submission_files")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SubmissionFile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "submission_id", nullable = false)
+    private Submission submission;
+
+    @Column(name = "original_filename", length = 255, nullable = false)
+    private String originalFilename;
+
+    @Column(name = "storage_key", length = 255, nullable = false)
+    private String storageKey;
+
+    @Column(name = "mime_type", length = 100)
+    private String mimeType;
+
+    @Column(name = "size_bytes")
+    private Long sizeBytes;
+
+    @Column(name = "uploaded_at", updatable = false)
+    private LocalDateTime uploadedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        if (uploadedAt == null) {
+            uploadedAt = LocalDateTime.now();
+        }
+    }
+}
+
